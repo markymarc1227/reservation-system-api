@@ -2,7 +2,8 @@ const saltRounds = 10;
 
 const handleUserRegister = (req, res, db, bcrypt) => {
 	const { email, password, firstName, lastName, age, gender, contactNum, address} = req.body;
-	if (!email || !password || !firstName || !lastName || !age || !gender || !contactNum || !address) {
+	if (!email || !password || !firstName || !lastName || !age || !gender || !contactNum || !address)
+	{
 		return res.status(400).json('incorrect form submission');
 	}
 	const salt = bcrypt.genSaltSync(saltRounds);
@@ -19,8 +20,8 @@ const handleUserRegister = (req, res, db, bcrypt) => {
 				return trx('users')
 					.returning('*')
 					.insert({
-						email: loginDetails[0],
-						user_id: loginDetails[1],
+						user_email: loginDetails[0].user_email,
+						user_id: loginDetails[0].user_id,
 						firstname: firstName,
 						lastname: lastName,
 						age: age,
