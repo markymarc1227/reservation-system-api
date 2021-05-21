@@ -5,6 +5,7 @@ const knex = require('knex');
 
 const userRegister = require('./UserControllers/userRegister');
 const userSignin = require('./UserControllers/userSignin');
+const userBookingRequest = require('./UserControllers/userBookingRequest');
 
 
 const db = knex({
@@ -29,6 +30,7 @@ app.use(cors());
 app.get('/', (req, res) => { res.send('it is working!') })
 app.post('/signin', (req, res) => {userSignin.handleUserSignin(req, res, db, bcrypt)})
 app.post('/register', (req, res) => {userRegister.handleUserRegister(req, res, db, bcrypt) })
+app.post('/bookingrequest', (req, res) => {userBookingRequest.handleBookingRequest(req, res, db) })
 
 
 app.listen(3000, () => {
