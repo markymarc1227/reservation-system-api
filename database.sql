@@ -6,8 +6,8 @@ CREATE TABLE user_login(
     hash varchar(255) NOT NULL
 );
 
-CREATE TABLE user(
-    user_id INTEGER PRIMARY KEY REFERENCES user_login,
+CREATE TABLE users(
+    user_id INTEGER NOT NULL PRIMARY KEY REFERENCES user_login,
     firstname varchar(255) NOT NULL,
     lastname varchar(255) NOT NULL,
     user_email varchar(255) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE admin_login(
 
 CREATE TABLE requests(
     req_id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES user,
+    user_id INTEGER NOT NULL REFERENCES users,
     service varchar(55) NOT NULL,
     reqdate date NOT NULL,
     reqtime time NOT NULL,
@@ -34,8 +34,8 @@ CREATE TABLE requests(
 );
 
 CREATE TABLE healthchecklist(
-    healthid SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES user,
+    health_id SERIAL PRIMARY KEY,
+    req_id INTEGER NOT NULL REFERENCES requests,
     sorethroat boolean NOT NULL,
     bodypain boolean NOT NULL,
     headache boolean NOT NULL,
