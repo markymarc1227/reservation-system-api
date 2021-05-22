@@ -3,10 +3,13 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 const knex = require('knex');
 
+
 const userRegister = require('./UserControllers/userRegister');
 const userSignin = require('./UserControllers/userSignin');
 const userBookingRequest = require('./UserControllers/userBookingRequest');
 
+const adminRegister = require('./AdminControllers/adminRegister');
+const adminSignin = require('./AdminControllers/adminSignin');
 
 const db = knex({
   client: 'pg',
@@ -18,9 +21,6 @@ const db = knex({
   }
 });
 
-// db.select('*').from('users').then(data => {
-// 	console.log(data);
-// });
 
 const app = express();
 
@@ -32,6 +32,8 @@ app.post('/signin', (req, res) => {userSignin.handleUserSignin(req, res, db, bcr
 app.post('/register', (req, res) => {userRegister.handleUserRegister(req, res, db, bcrypt) })
 app.post('/bookingrequest', (req, res) => {userBookingRequest.handleBookingRequest(req, res, db) })
 
+// app.post('/adminregister', (req, res) => {adminRegister.handleAdminRegister(req, res, db, bcrypt) })
+app.post('/adminsignin', (req, res) => {adminSignin.handleAdminSignin(req, res, db, bcrypt)})
 
 app.listen(3000, () => {
 	console.log('app is running on port 3000');
