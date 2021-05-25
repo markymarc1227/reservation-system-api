@@ -1,4 +1,4 @@
-This is the REST API for the online reservation system project.
+This is the RESTful API for the online reservation system project.
 
 How to run this app:
 
