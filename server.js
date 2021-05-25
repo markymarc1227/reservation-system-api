@@ -8,6 +8,10 @@ const userRegister = require('./UserControllers/userRegister');
 const userSignin = require('./UserControllers/userSignin');
 const userBookingRequest = require('./UserControllers/userBookingRequest');
 const userReschedule = require('./UserControllers/userReschedule');
+const userReschedConfirm = require('./UserControllers/userConfirmResched');
+const userCancel = require('./UserControllers/userCancelRequest');
+const userChecklist = require('./UserControllers/userSubmitChecklist');
+
 
 const adminRegister = require('./AdminControllers/adminRegister');
 const adminSignin = require('./AdminControllers/adminSignin');
@@ -38,8 +42,9 @@ app.post('/signin', (req, res) => { userSignin.handleUserSignin(req, res, db, bc
 app.post('/register', (req, res) => { userRegister.handleUserRegister(req, res, db, bcrypt) })
 app.post('/bookingrequest', (req, res) => { userBookingRequest.handleBookingRequest(req, res, db) })
 app.put('/reschedule', (req, res) => { userReschedule.handleUserReschedule(req, res, db) })
-// app.put('/confirm', (req, res) => { userReschedule.handleUserReschedule(req, res, db) })
-// app.delete('/cancel', (req, res) => { userReschedule.handleUserReschedule(req, res, db) })
+app.put('/confirm', (req, res) => { userReschedConfirm.handleConfirmResched(req, res, db) })
+app.put('/cancel', (req, res) => { userCancel.handleCancelRequest(req, res, db) })
+app.post('/checklist', (req, res) => { userChecklist.handleChecklist(req, res, db) })
 
 // app.post('/adminregister', (req, res) => {adminRegister.handleAdminRegister(req, res, db, bcrypt) })
 app.post('/adminsignin', (req, res) => {adminSignin.handleAdminSignin(req, res, db, bcrypt)})
