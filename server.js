@@ -15,7 +15,14 @@ const userChecklist = require('./UserControllers/userSubmitChecklist');
 
 const adminRegister = require('./AdminControllers/adminRegister');
 const adminSignin = require('./AdminControllers/adminSignin');
+
 const schedCustomers = require('./AdminControllers/schedCustomers');
+const doneCustomer = require('./AdminControllers/doneCustomer');
+const cancelCustomer = require('./AdminControllers/cancelCustomer');
+
+const pendingCustomers = require('./AdminControllers/pendingCustomers');
+const approveRequest = require('./AdminControllers/approveCustomer');
+const rescheduleRequest = require('./AdminControllers/rescheduleCustomer')
 
 //Fixes the date formatting issues when fetching from pg database.
 const { types } = require('pg');
@@ -50,7 +57,18 @@ app.post('/checklist', (req, res) => { userChecklist.handleChecklist(req, res, d
 
 // app.post('/adminregister', (req, res) => {adminRegister.handleAdminRegister(req, res, db, bcrypt) })
 app.post('/adminsignin', (req, res) => {adminSignin.handleAdminSignin(req, res, db, bcrypt)})
+
+//AdminSchedule
 app.get('/schedCustomers/:date', (req, res) => {schedCustomers.handleSchedCustomers(req, res, db)})
+app.put('/customerdone', (req, res) => {doneCustomer.handleDoneCustomer(req, res, db)})
+app.put('/cancelcustomer', (req, res) => {cancelCustomer.handleCancelCustomer(req, res, db)})
+
+//AdminRequests
+app.get('/pendingCustomers/:date', (req, res) => {pendingCustomers.handlePendingCustomers(req, res, db)})
+app.put('/approveRequest', (req, res) => {approveRequest.handleApproveCustomer(req, res, db)})
+app.put('/rescheduleRequest', (req, res) => {rescheduleRequest.handleRescheduleCustomer(req, res, db)})
+
+//AdminCompleted
 
 app.listen(3000, () => {
 	console.log('app is running on port 3000');
