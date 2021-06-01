@@ -22,7 +22,9 @@ const cancelCustomer = require('./AdminControllers/cancelCustomer');
 
 const pendingCustomers = require('./AdminControllers/pendingCustomers');
 const approveRequest = require('./AdminControllers/approveCustomer');
-const rescheduleRequest = require('./AdminControllers/rescheduleCustomer')
+const rescheduleRequest = require('./AdminControllers/rescheduleCustomer');
+
+const completedCustomers = require('./AdminControllers/completedCustomers');
 
 //Fixes the date formatting issues when fetching from pg database.
 const { types } = require('pg');
@@ -69,6 +71,7 @@ app.put('/approveRequest', (req, res) => {approveRequest.handleApproveCustomer(r
 app.put('/rescheduleRequest', (req, res) => {rescheduleRequest.handleRescheduleCustomer(req, res, db)})
 
 //AdminCompleted
+app.get('/completedCustomers/:date', (req, res) => {completedCustomers.handleCompletedCustomers(req, res, db)})
 
 app.listen(3000, () => {
 	console.log('app is running on port 3000');
