@@ -6,6 +6,7 @@ const knex = require('knex');
 
 const userRegister = require('./UserControllers/userRegister');
 const userSignin = require('./UserControllers/userSignin');
+const userRefresh = require('./UserControllers/userRefresh');
 const userBookingRequest = require('./UserControllers/userBookingRequest');
 const userReschedule = require('./UserControllers/userReschedule');
 const userReschedConfirm = require('./UserControllers/userConfirmResched');
@@ -48,9 +49,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+//User Endpoints
 app.get('/', (req, res) => { res.send('it is working!') })
 app.post('/signin', (req, res) => { userSignin.handleUserSignin(req, res, db, bcrypt) })
 app.post('/register', (req, res) => { userRegister.handleUserRegister(req, res, db, bcrypt) })
+app.post('/refresh', (req, res) => { userRefresh.handleUserRefresh(req, res, db) })
 app.post('/bookingrequest', (req, res) => { userBookingRequest.handleBookingRequest(req, res, db) })
 app.put('/reschedule', (req, res) => { userReschedule.handleUserReschedule(req, res, db) })
 app.put('/confirm', (req, res) => { userReschedConfirm.handleConfirmResched(req, res, db) })
