@@ -36,10 +36,10 @@ types.setTypeParser(TYPE_DATESTAMP, date => date);
 const db = knex({
   client: 'pg',
   connection: {
-    host : '127.0.0.1',
-    user : 'postgres',
-    password : 'admin',
-    database : 'reservationdb'
+    host : process.env.DATABASE_URL,
+    ssl: {
+    rejectUnauthorized: false
+    }
   }
 });
 
@@ -81,6 +81,5 @@ app.get('/completedCustomers/:date', (req, res) => {completedCustomers.handleCom
 app.listen(process.env.PORT || 3000, () => {
 	console.log(`app is running on port ${process.env.PORT}`);
 })
-
 
 
