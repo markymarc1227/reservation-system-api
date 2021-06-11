@@ -36,7 +36,7 @@ types.setTypeParser(TYPE_DATESTAMP, date => date);
 const db = knex({
   client: 'pg',
   connection: {
-    host : process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL,
     ssl: {
     rejectUnauthorized: false
     }
