@@ -14,7 +14,7 @@ const userCancel = require('./UserControllers/userCancelRequest');
 const userChecklist = require('./UserControllers/userSubmitChecklist');
 
 
-const adminRegister = require('./AdminControllers/adminRegister');
+// const adminRegister = require('./AdminControllers/adminRegister');
 const adminSignin = require('./AdminControllers/adminSignin');
 
 const schedCustomers = require('./AdminControllers/schedCustomers');
@@ -76,8 +76,10 @@ app.put('/rescheduleRequest', (req, res) => {rescheduleRequest.handleRescheduleC
 //AdminCompleted
 app.get('/completedCustomers/:date', (req, res) => {completedCustomers.handleCompletedCustomers(req, res, db)})
 
-app.listen(3000, () => {
-	console.log('app is running on port 3000');
+
+
+app.listen(process.env.PORT || 3000, () => {
+	console.log(`app is running on port ${process.env.PORT}`);
 })
 
 
