@@ -13,11 +13,11 @@ const handleAdminSignin = (req, res, db, bcrypt) => {
 					admin_email: data[0].admin_email
 				})
 		} else {
-			res.status(400).json("wrong credentials1")
+			res.status(400).json("wrong credentials")
 		}
 
 	})
-	.catch(err => res.status(400).json('wrong credentials2'))
+	.catch(err => res.status(400).json('wrong credentials'))
 }
 
 module.exports = {
