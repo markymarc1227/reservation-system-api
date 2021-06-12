@@ -14,7 +14,7 @@ const userCancel = require('./UserControllers/userCancelRequest');
 const userChecklist = require('./UserControllers/userSubmitChecklist');
 
 
-const adminRegister = require('./AdminControllers/adminRegister');
+// const adminRegister = require('./AdminControllers/adminRegister');
 const adminSignin = require('./AdminControllers/adminSignin');
 
 const schedCustomers = require('./AdminControllers/schedCustomers');
@@ -60,8 +60,7 @@ app.put('/confirm', (req, res) => { userReschedConfirm.handleConfirmResched(req,
 app.put('/cancel', (req, res) => { userCancel.handleCancelRequest(req, res, db) })
 app.post('/checklist', (req, res) => { userChecklist.handleChecklist(req, res, db) })
 
-app.post('/adminregister', (req, res) => {adminRegister.handleAdminRegister(req, res, db, bcrypt) })
-
+// app.post('/adminregister', (req, res) => {adminRegister.handleAdminRegister(req, res, db, bcrypt) })
 app.post('/adminsignin', (req, res) => {adminSignin.handleAdminSignin(req, res, db, bcrypt)})
 
 //AdminSchedule
